@@ -2,33 +2,44 @@ const mongoose = require("mongoose");
 
 const PinSchema = new mongoose.Schema(
 	{
-		username: {
+		createdBy: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		title: {
 			type: String,
 			required: true,
 			min: 3,
 		},
-		desc: {
-			type: String,
-			required: true,
-			min: 3,
-		},
-		rating: {
-			type: Number,
-			require: true,
-			min: 0,
-			max: 5,
-		},
+		desc: [
+			{
+				username: {
+					type: String,
+					required: true,
+				},
+				body: {
+					type: String,
+					required: true,
+				},
+				rating: {
+					type: Number,
+					required: true,
+					min: 0,
+					max: 5,
+				},
+				publishedAt: {
+					type: String,
+					required: true,
+				},
+			},
+		],
 		lat: {
 			type: Number,
-			require: true,
+			required: true,
 		},
 		long: {
 			type: Number,
-			require: true,
+			required: true,
 		},
 	},
 	{ timestamps: true }
