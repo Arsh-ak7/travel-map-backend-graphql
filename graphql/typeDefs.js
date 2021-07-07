@@ -18,7 +18,7 @@ module.exports = gql`
 		id: ID!
 		createdBy: String!
 		title: String!
-		description: [Description]!
+		desc: [Description]!
 		lat: Float!
 		long: Float!
 	}
@@ -29,7 +29,6 @@ module.exports = gql`
 		email: String!
 	}
 	input DescriptionInput {
-		username: String!
 		body: String!
 		rating: Int!
 		publishedAt: String!
@@ -41,8 +40,13 @@ module.exports = gql`
 	type Mutation {
 		register(registerInput: RegisterInput): User!
 		login(username: String!, password: String!): User!
-		createPin(title: String!): Pin!
-		deletePin(pinId: ID!): Pin!
-		createDescription(pinId: ID!, description: DescriptionInput!): Pin!
+		createPin(
+			title: String!
+			desc: DescriptionInput!
+			lat: Float!
+			long: Float!
+		): Pin!
+		deletePin(pinId: ID!): String!
+		createDescription(pinId: ID!, desc: DescriptionInput!): Pin!
 	}
 `;
