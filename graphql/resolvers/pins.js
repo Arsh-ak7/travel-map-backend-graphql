@@ -101,8 +101,12 @@ module.exports = {
 
 			pin.desc.push(addedDescription);
 
-			await pin.save();
-			return pin;
+			try {
+				await pin.save();
+				return pin;
+			} catch (err) {
+				throw new Error("Cannot add description");
+			}
 		},
 	},
 };
