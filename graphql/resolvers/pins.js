@@ -64,7 +64,8 @@ module.exports = {
 			try {
 				if (pin.createdBy === username) {
 					await pin.delete();
-					return "Pin deleted Successfully";
+					const pins = await Pin.find();
+					return pins;
 				} else
 					throw new AuthenticationError(
 						"You are not authorized to delete this pin"

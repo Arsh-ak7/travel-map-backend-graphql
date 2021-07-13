@@ -46,7 +46,7 @@ module.exports = gql`
 			lat: Float!
 			long: Float!
 		): Pin!
-		deletePin(pinId: ID!): String!
+		deletePin(pinId: ID!): [Pin]
 		createDescription(pinId: ID!, desc: DescriptionInput!): [Pin]
 	}
 `;
