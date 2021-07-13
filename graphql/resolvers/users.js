@@ -73,6 +73,14 @@ module.exports = {
 					},
 				});
 			}
+			const userEmail = await User.findOne({ email });
+			if (userEmail) {
+				throw new UserInputError("Email already taken", {
+					errors: {
+						username: "This email is taken",
+					},
+				});
+			}
 			//TODO has password and create an auth token
 			password = await bcrypt.hash(password, 12);
 

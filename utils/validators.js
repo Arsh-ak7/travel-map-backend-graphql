@@ -21,6 +21,8 @@ module.exports.validateRegisterInput = (
 		errors.password = "Password must not be empty";
 	} else if (password !== confirmPassword) {
 		errors.confirmPassword = "Passwords should match";
+	} else if (password.length < 3) {
+		errors.password = "Password too short";
 	}
 	return {
 		errors,
