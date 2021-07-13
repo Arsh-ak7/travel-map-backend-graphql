@@ -71,7 +71,7 @@ module.exports = {
 						"You are not authorized to delete this pin"
 					);
 			} catch (err) {
-				throw new Error(err);
+				throw new UserInputError(err);
 			}
 		},
 		async createDescription(
