@@ -32,8 +32,11 @@ module.exports = {
 		) {
 			const user = checkAuth(context);
 			const username = user.username;
+			if (title === "") {
+				throw new UserInputError("Title Cannot be empty");
+			}
 			if (body.trim() === "") {
-				throw new Error("Body cannot be empty");
+				throw new UserInputError("Body cannot be empty");
 			}
 			const newPin = new Pin({
 				createdBy: username,
@@ -103,7 +106,8 @@ module.exports = {
 
 			try {
 				await pin.save();
-				return pin;
+				const pins = await Pin.find();
+				return pins;
 			} catch (err) {
 				throw new Error("Cannot add description");
 			}
